@@ -99,18 +99,3 @@ with torch.autocast(device_type="cuda"):
             with torch.no_grad():
                 loss = model(next(val_loader))
                 print(f'validation loss: {loss.item()}')
-    
-        if i % GENERATE_EVERY == 0:
-            model.eval()
-            inp = random.choice(val_dataset)[:-1]
-            prime = decode_tokens(inp)
-            print(f'%s \n\n %s', (prime, '*' * 100))
-    
-            sample = model.generate(
-                prompts = inp,
-                seq_len = GENERATE_LENGTH,
-                cache_kv = True
-            )
-
-        output_str = decode_tokens(sample)
-        print(output_str)
