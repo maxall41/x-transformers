@@ -180,9 +180,7 @@ class Attend(Module):
         cope = None,
         onnxable = False,
         sdp_kwargs: dict = dict(
-            enable_flash = True,
-            enable_math = True,
-            enable_mem_efficient = True
+            enable_cudnn = True
         )
     ):
         super().__init__()
